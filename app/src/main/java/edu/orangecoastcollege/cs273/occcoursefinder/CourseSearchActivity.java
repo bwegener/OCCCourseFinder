@@ -6,6 +6,10 @@ import android.util.Log;
 
 import java.util.List;
 
+/**
+ * This <code>CourseSearchActivity</code> searches for the courses by connecting
+ * to the database and going through the courses, instructors, and offerings.
+ */
 public class CourseSearchActivity extends AppCompatActivity {
 
     private DBHelper db;
@@ -20,7 +24,8 @@ public class CourseSearchActivity extends AppCompatActivity {
         db = new DBHelper(this);
         db.importCoursesFromCSV("courses.csv");
         db.importInstructorsFromCSV("instructors.csv");
-        //TODO: Create the method importOfferingsFromCSV, then use it in this activity.
+        //COMPLETED: Create the method importOfferingsFromCSV, then use it in this activity.
+        db.importOfferingsFromCSV("offerings.csv");
 
 
         List<Course> allCourses = db.getAllCourses();
@@ -31,7 +36,10 @@ public class CourseSearchActivity extends AppCompatActivity {
         for (Instructor instructor : allInstructors)
             Log.i(TAG, instructor.toString());
 
-        //TODO: Get all the offerings from the database, then print them out to the Log
+        //COMPLETED: Get all the offerings from the database, then print them out to the Log
+        List<Offering> allOfferings = db.getAllOfferings();
+        for(Offering offering : allOfferings)
+            Log.i(TAG, offering.toString());
 
 
     }
